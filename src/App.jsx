@@ -6,10 +6,7 @@ function App() {
   const handleCancel = () => console.log("CANCELLED");
 
   const handleSuccess = (files) => {
-    console.log(
-      "SUCCESS: ",
-      files.value.map((doc) => doc)
-    );
+    console.log("SUCCESS: ", JSON.stringify(files.value.map((doc) => doc)));
     setFiles((prevState) => [
       ...prevState,
       ...files.value.map((doc) => doc.webUrl),
@@ -47,7 +44,11 @@ function App() {
   };
   return (
     <>
-      <button onClick={() => clickHandler("{KEY}", "share")}>Secelim</button>
+      <button
+        onClick={() => clickHandler(import.meta.env.VITE_ONEDRIVE_KEY, "share")}
+      >
+        Secelim
+      </button>
       <div>
         {files?.map((file) => (
           <div key={file}>
